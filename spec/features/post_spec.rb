@@ -32,6 +32,15 @@ describe 'navigate' do
       click_link("new_post_from_nav")
       expect(page.status_code).to eq(200)
   end
+
+  describe 'delete' do
+    it 'can be deleted' do
+      @post = FactoryBot.create(:post)
+      visit posts_path
+
+      click_link("delete_post_#{@post.id}_from_index")
+      expect(page.status_code).to eq(200)
+    end
 end
 
   describe 'creation' do 
@@ -78,6 +87,7 @@ end
       click_on "Save"
       
       expect(page).to have_content("Edited content")
+    end
     end
   end
 end
