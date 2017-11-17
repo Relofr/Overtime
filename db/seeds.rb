@@ -2,7 +2,7 @@
           email: "test@test.com", 
           password: "asdfasdf", 
           password_confirmation: "asdfasdf", 
-          first_name: "kyle", 
+          first_name: "test", 
           last_name: "test"
           )
 
