@@ -21,7 +21,4 @@
 - x Update the styles for forms
 
 ## Refactor TODOS:
-- x Add full name method for users
 - Refactor user association integration test in post spec
-- Refactor form for admin user status
-- Fix post_spec.rb:82 to use factories
