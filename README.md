@@ -23,4 +23,4 @@
 
 ## TODOS:
 - x Refactor user association integration test in post spec
-- Integrate validations for phone attr in User:
+- x Integrate validations for phone attr in User:
