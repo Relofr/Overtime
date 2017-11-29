@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'navigate' do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryGirl.create(:user) }
 
   let(:post) do
     Post.create(date: Date.today, rationale: "Rationale", user_id: user.id, overtime_request: 3.5)
@@ -16,17 +16,17 @@ describe 'navigate' do
       visit posts_path
     end
 
-    it 'can be reached successfully' do
-      expect(page.status_code).to eq(200)
-    end
+  	it 'can be reached successfully' do
+  		expect(page.status_code).to eq(200)
+  	end
 
-    it 'has a title of Posts' do
-      expect(page).to have_content(/Posts/)
-    end
+  	it 'has a title of Posts' do
+  		expect(page).to have_content(/Posts/)
+  	end
 
     it 'has a list of posts' do
-      post1 = FactoryBot.build_stubbed(:post)
-      post2 = FactoryBot.build_stubbed(:second_post)
+      post1 = FactoryGirl.build_stubbed(:post)
+      post2 = FactoryGirl.build_stubbed(:second_post)
       visit posts_path
       expect(page).to have_content(/Rationale|content/)
     end
@@ -54,7 +54,7 @@ describe 'navigate' do
     it 'can be deleted' do
       logout(:user)
 
-      delete_user = FactoryBot.create(:user)
+      delete_user = FactoryGirl.create(:user)
       login_as(delete_user, :scope => :user)
 
       post_to_delete = Post.create(date: Date.today, rationale: 'asdf', user_id: delete_user.id, overtime_request: 3.5)
@@ -67,20 +67,21 @@ describe 'navigate' do
   end
 
   describe 'creation' do
-    before do
-      visit new_post_path
-    end
+  	before do
+  		visit new_post_path
+  	end
 
-    it 'has a new form that can be reached' do
-      expect(page.status_code).to eq(200)
-    end
+  	it 'has a new form that can be reached' do
+  		expect(page.status_code).to eq(200)
+  	end
 
-    it 'can be created from new form page' do
+  	it 'can be created from new form page' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: "Some rationale"
       fill_in 'post[overtime_request]', with: 4.5
-      expect { click_on "Save" }.to change(Post, :count).by
-    end
+
+      expect { click_on "Save" }.to change(Post, :count).by(1)
+  	end
 
     it 'will have a user associated it' do
       fill_in 'post[date]', with: Date.today
@@ -105,7 +106,7 @@ describe 'navigate' do
 
     it 'cannot be edited by a non authorized user' do
       logout(:user)
-      non_authorized_user = FactoryBot.create(:non_authorized_user)
+      non_authorized_user = FactoryGirl.create(:non_authorized_user)
       login_as(non_authorized_user, :scope => :user)
 
       visit edit_post_path(post)

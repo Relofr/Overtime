@@ -21,5 +21,6 @@
 - x Icons from Glyphicons
 - x Update the styles for forms
 
-## Refactor TODOS:
+## TODOS:
 - x Refactor user association integration test in post spec
+- Integrate validations for phone attr in User:

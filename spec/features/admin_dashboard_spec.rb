@@ -11,7 +11,7 @@ describe 'admin dashboard' do
     expect(current_path).to eq(new_user_session_path)
   end
     it 'can be reached by an admin user' do
-    admin_user = FactoryBot.create(:admin_user)
+    admin_user = FactoryGirl.create(:admin_user)
     login_as(admin_user, :scope => :user)
 
     visit admin_root_path
